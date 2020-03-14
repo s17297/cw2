@@ -14,8 +14,7 @@ namespace cw2.Models
         [XmlElement(ElementName = "dOfBirth")] public string dataUrodzenia { get; set; }
         [XmlElement(ElementName = "mothersName")] public string imieMatki { get; set; }
         [XmlElement(ElementName = "fathersName")] public string imieOjca { get; set; }
-        [XmlElement(ElementName = "mode")] public string trybStudiow { get; set; }
-        [XmlElement(ElementName = "name")] public string kierunek { get; set; }
+        [XmlElement(ElementName = "studies")] public Studies studies { get; set; }
 
     }
 }

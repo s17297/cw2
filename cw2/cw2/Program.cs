@@ -74,8 +74,11 @@ namespace cw2
                             dataUrodzenia = kolumny[5],
                             imieMatki = kolumny[7],
                             imieOjca = kolumny[8],
-                            trybStudiow = kolumny[3],
-                            kierunek = kolumny[2],
+                            studies = new Studies()
+                            {
+                                trybStudiow = kolumny[3],
+                                kierunek = kolumny[2],
+                            },
                             eska = "s" + kolumny[4]
                         };
                         list.Add(st);
