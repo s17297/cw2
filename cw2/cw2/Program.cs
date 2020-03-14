@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using cw2.Models;
 
@@ -18,6 +19,41 @@ namespace cw2
             int licz = 0;
             var fi = new FileInfo(path);
             string logtxt = null;
+
+
+            Boolean checkStream(int len, string[] tab)
+            {
+                Boolean check = false;
+
+                if (len != 9) {
+                    check = true;
+                }
+                foreach (var kolumna in tab)
+                {
+                    if (kolumna == null || kolumna == "")
+                    {
+                        check = true;
+                    }
+
+                }
+
+                if (!tab[6].Contains('@'))
+                {
+                    check = true;
+                }
+
+                Regex reg = new Regex("\\d{4}-\\d{2}-\\d{2}");
+                Match match = reg.Match(tab[5]);
+                if (!match.Success)
+                {
+                    check = true;
+                }
+
+                return check;
+            }
+
+
+
             //FileStream logWriter = new FileStream(@"log.txt", FileMode.Create);
             using (var stream = new StreamReader(fi.OpenRead()))
             {
@@ -25,7 +61,7 @@ namespace cw2
                 while ((line = stream.ReadLine()) != null)
                 {
                     string[] kolumny = line.Split(',');
-                    if (kolumny.Length == 9)
+                    if (checkStream(kolumny.Length, kolumny)==false)
                     {
                         licz++;
 
